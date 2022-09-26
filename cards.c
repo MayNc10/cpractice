@@ -26,8 +26,9 @@ int main(void) {
 }
 
 void fillDeck(Card deck[], char* faces[], char* suits[]) {
-    for (int face = 0; face < NUM_FACES; face++) {
-        for (int suit = 0; suit < NUM_SUITS; suit++) {
+    for (size_t face = 0; face < NUM_FACES; face++) {
+        for (size_t suit = 0; suit < NUM_SUITS; suit++) {
+            printf("%d %d\n", face, suit);
             Card card;
             card.face = faces[face];
             printf("%s ", card.face);
