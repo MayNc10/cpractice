@@ -28,14 +28,9 @@ int main(void) {
 void fillDeck(Card deck[], char* faces[], char* suits[]) {
     for (size_t face = 0; face < NUM_FACES; face++) {
         for (size_t suit = 0; suit < NUM_SUITS; suit++) {
-            printf("%d %d\n", face, suit);
-            Card card;
-            card.face = faces[face];
-            printf("%s ", card.face);
-            card.suit = suits[suit];
-            printf("%s\n", card.suit);
-            card.num = face + 2;
-            deck[face * NUM_FACES + suit] = card;
+            deck[face * NUM_SUITS + suit].face = faces[face];
+            deck[face * NUM_SUITS + suit].suit = suits[suit];
+            deck[face * NUM_SUITS + suit].num = face + 2;
         }
     }
 }
@@ -43,14 +38,14 @@ void shuffle(Card deck[]) {
     Card temp;
     int idx;
 
-    for (int i = 0; i < NUM_FACES * NUM_SUITS - 1; i++) {
-        idx = rand() % NUM_FACES * NUM_SUITS;
+    for (int i = NUM_FACES * NUM_SUITS - 1; i > 0; i--) {
+        idx = rand() % i;
         temp = deck[idx];
         deck[idx] = deck[i];
         deck[i] = temp;
     }
 }
 void deal(Card deck[]) {
-    for (int i = 0; i < NUM_FACES * NUM_SUITS; i++) printf("%s of %s", deck[i].face, deck[i].suit);
+    for (int i = 0; i < NUM_FACES * NUM_SUITS; i++) printf("%s of %s\n", deck[i].face, deck[i].suit);
 }
 
